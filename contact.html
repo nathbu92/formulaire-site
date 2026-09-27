@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contactez-nous</title>
+<style>
+  :root {
+    --blue-dark: #1a2fb0;
+    --blue: #2e4fe0;
+    --teal: #1fa9a0;
+    --purple: #5b2e9e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue) 40%, var(--teal) 70%, var(--purple));
+    padding: 24px;
+  }
+  .card {
+    background: rgba(255,255,255,0.97);
+    border-radius: 16px;
+    padding: 32px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .card h1 {
+    margin-top: 0;
+    color: var(--blue-dark);
+    font-size: 1.5rem;
+  }
+  label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: #333;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  textarea { min-height: 120px; resize: vertical; }
+  button {
+    margin-top: 24px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--blue);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover { background: var(--purple); }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  #status { margin-top: 14px; font-size: 0.95rem; text-align: center; }
+  #status.ok { color: var(--teal); }
+  #status.err { color: #c0392b; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>📬 Contactez-nous</h1>
+    <form id="contact-form">
+      <label for="nom">👤 Nom</label>
+      <input type="text" id="nom" name="nom" required>
+
+      <label for="email">📧 Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="sujet">📌 Sujet</label>
+      <input type="text" id="sujet" name="sujet" required>
+
+      <label for="message">💬 Message</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit" id="submit-btn">Envoyer</button>
+      <div id="status"></div>
+    </form>
+  </div>
+
+  <script src="contact.js"></script>
+</body>
+</html>

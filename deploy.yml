@@ -1,0 +1,32 @@
+name: Déploiement du formulaire de contact
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Injecter le webhook dans contact.js
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          sed -i "s|__DISCORD_WEBHOOK_URL__|${DISCORD_WEBHOOK_URL}|g" contact.js
+
+      - name: Préparer les fichiers pour Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Déployer sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
